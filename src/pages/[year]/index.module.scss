@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 1rem;
+
+    .form-group {
+        display: flex;
+        align-items: center;
+
+        .textfield {
+            margin: 1rem;
+        }
+    }
+    .nav-btn {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        .ctl-btn {
+            margin: 1rem;
+        }
+    }
+
+}

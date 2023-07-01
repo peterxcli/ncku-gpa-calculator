@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useAppStore } from '@/store/store';
 import { calculateGPA } from '@/utils/calculate';
 import { v4 as uuidv4 } from 'uuid';
+import styles from './index.module.scss'
 
 const CoursePage = () => {
     const router = useRouter();
@@ -16,7 +17,7 @@ const CoursePage = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        addCourse(year as string, semester as string, { id: uuidv4() , name: courseName, score, credit });
+        addCourse(year as string, semester as string, { id: uuidv4(), name: courseName, score, credit });
         setCourseName('');
         setScore(0);
         setCredit(0);
@@ -39,20 +40,27 @@ const CoursePage = () => {
     }, []);
 
     return (
-        <Container>
+        <Container className={styles.container}>
+            <h2>{year}, {semester}</h2>
             {
                 records[year as string]?.[semester as string]?.map((course, index) => (
-                    <div key={index}>
+                    <div className={styles['form-group']} key={index}>
                         <TextField
+                            className={styles.textfield}
+                            label='Course Name'
                             value={course.name}
                             onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, name: e.target.value })}
                         />
                         <TextField
+                            className={styles.textfield}
+                            label='Score'
                             value={course.score}
                             onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, score: Number(e.target.value) })}
                             type="number"
                         />
                         <TextField
+                            className={styles.textfield}
+                            label='Credit'
                             value={course.credit}
                             onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, credit: Number(e.target.value) })}
                             type="number"
@@ -61,16 +69,51 @@ const CoursePage = () => {
                     </div>
                 ))
             }
-            <form onSubmit={handleSubmit}>
-                <TextField value={courseName} onChange={(e) => setCourseName(e.target.value)} placeholder="Course Name" required />
-                <TextField value={score} onChange={(e) => setScore(Number(e.target.value))} placeholder="Score" required type="number" />
-                <TextField value={credit} onChange={(e) => setCredit(Number(e.target.value))} placeholder="Credit" required type="number" />
+            <form onSubmit={handleSubmit} className={styles['form-group']}>
+                <TextField
+                    className={styles.textfield}
+                    label='Course Name'
+                    value={courseName}
+                    onChange={(e) => setCourseName(e.target.value)}
+                    placeholder="Course Name" required
+                />
+                <TextField
+                    className={styles.textfield}
+                    label='Score'
+                    value={score}
+                    onChange={(e) => setScore(Number(e.target.value))}
+                    placeholder="Score" required type="number"
+                />
+                <TextField
+                    className={styles.textfield}
+                    label='Credit'
+                    value={credit}
+                    onChange={(e) => setCredit(Number(e.target.value))}
+                    placeholder="Credit"
+                    required
+                    type="number"
+                />
                 <Button type="submit">Add Course</Button>
             </form>
-            <Button onClick={() => setGpa(calculateGPA(records[year as string][semester as string]))} variant='contained'>Calculate</Button>
-            {gpa >= 0 && <h1>GPA: {gpa}</h1>}
-            {gpa >= 0 && <h2>{year}, {semester}</h2>}
-            <Button onClick={() => router.push('/')}>Back</Button>
+            <div className={styles['nav-btn']}>
+                <Button
+                    className={styles['ctl-btn']}
+                    onClick={() => setGpa(calculateGPA(records[year as string][semester as string]))}
+                    variant='contained'
+                >
+                    Calculate
+                </Button>
+                {gpa >= 0 && <h2 className={styles['ctl-btn']}>GPA: {gpa}</h2>}
+                <Button
+                    className={styles['ctl-btn']}
+                    onClick={() => router.push('/')}
+                >
+                    Back
+                </Button>
+            </div>
+
+            
+
         </Container>
     );
 };
