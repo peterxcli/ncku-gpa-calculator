@@ -1,3 +1,17 @@
+# NCKU GPA Calculator
+
+我找不到好用的計算機... 所以寫了這個奇怪的東西
+
+[我花的時間](https://wakatime.com/@peterlee/projects/ybozxjccbx?start=2023-06-26&end=2023-07-02)
+
+## description generated bt GPT-4:
+
+提供一個能夠在裝置上永久儲存你的成績資料的網站的成功大學 GPA 計算工具，選擇學期，輸入你的成績，網站將計算你的 GPA。此 GPA 計算機使用104年後的新標準計算，請特別注意
+
+Offering a National Cheng Kung University GPA calculator that allows you to permanently save your grade data on your device. Choose the semester, simply input your grades, and the tool will quickly calculate your GPA.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
