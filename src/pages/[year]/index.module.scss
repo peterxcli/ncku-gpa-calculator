@@ -1,25 +1,59 @@
 .container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     margin: 1rem;
 
-    .form-group {
-        display: flex;
-        align-items: center;
+    .course-box {
+        .form-group {
+            display: flex;
+            align-items: center;
 
-        .textfield {
-            margin: 1rem;
+            .input-group {
+                display: flex;
+                flex-direction: row;
+
+                .textfield {
+                    margin: 1rem;
+                }
+            }
+
+            .btn {
+                width: 3rem;
+            }
+        }
+        .separate-line {
+            height: 1px;
+            background-color: #BDBDBD;
+            width: 100%;
+            margin: 16px 0;
         }
     }
+
     .nav-btn {
         align-items: center;
         display: flex;
         flex-direction: row;
+
         .ctl-btn {
             margin: 1rem;
         }
     }
+}
 
+@media screen and (max-width: 666px) {
+    .container {
+        .course-box {
+            .form-group {
+                .input-group {
+                    flex-direction: column;
+
+                    .textfield {
+                        margin: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -50,57 +50,67 @@ const CoursePage = () => {
                 <h2>{year}, {semester}</h2>
                 {
                     records[year as string]?.[semester as string]?.map((course, index) => (
-                        <div className={styles['form-group']} key={index}>
+                        <div className={styles['course-box']} key={index}>
+                            <div className={styles['form-group']} >
+                                <div className={styles['input-group']}>
+                                    <TextField
+                                        className={styles.textfield}
+                                        label='Course Name'
+                                        value={course.name}
+                                        onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, name: e.target.value })}
+                                    />
+                                    <TextField
+                                        className={styles.textfield}
+                                        label='Score'
+                                        value={course.score}
+                                        onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, score: Number(e.target.value) })}
+                                        type="number"
+                                    />
+                                    <TextField
+                                        className={styles.textfield}
+                                        label='Credit'
+                                        value={course.credit}
+                                        onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, credit: Number(e.target.value) })}
+                                        type="number"
+                                    />
+                                </div>
+                                <Button className={styles.btn} color="error" onClick={() => removeCourse(year as string, semester as string, course.id)}>Delete</Button>
+                            </div>
+                            <div className={styles['separate-line']} ></div>
+                        </div>
+                    ))
+                }
+                <div className={styles['course-box']}>
+                    <form onSubmit={handleSubmit} className={styles['form-group']}>
+                        <div className={styles['input-group']}>
                             <TextField
                                 className={styles.textfield}
                                 label='Course Name'
-                                value={course.name}
-                                onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, name: e.target.value })}
+                                value={courseName}
+                                onChange={(e) => setCourseName(e.target.value)}
+                                placeholder="Course Name" required
                             />
                             <TextField
                                 className={styles.textfield}
                                 label='Score'
-                                value={course.score}
-                                onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, score: Number(e.target.value) })}
-                                type="number"
+                                value={score}
+                                onChange={(e) => setScore(Number(e.target.value))}
+                                placeholder="Score" required type="number"
                             />
                             <TextField
                                 className={styles.textfield}
                                 label='Credit'
-                                value={course.credit}
-                                onChange={(e) => updateCourse(year as string, semester as string, course.id, { ...course, credit: Number(e.target.value) })}
+                                value={credit}
+                                onChange={(e) => setCredit(Number(e.target.value))}
+                                placeholder="Credit"
+                                required
                                 type="number"
                             />
-                            <Button color="error" onClick={() => removeCourse(year as string, semester as string, course.id)}>Delete</Button>
                         </div>
-                    ))
-                }
-                <form onSubmit={handleSubmit} className={styles['form-group']}>
-                    <TextField
-                        className={styles.textfield}
-                        label='Course Name'
-                        value={courseName}
-                        onChange={(e) => setCourseName(e.target.value)}
-                        placeholder="Course Name" required
-                    />
-                    <TextField
-                        className={styles.textfield}
-                        label='Score'
-                        value={score}
-                        onChange={(e) => setScore(Number(e.target.value))}
-                        placeholder="Score" required type="number"
-                    />
-                    <TextField
-                        className={styles.textfield}
-                        label='Credit'
-                        value={credit}
-                        onChange={(e) => setCredit(Number(e.target.value))}
-                        placeholder="Credit"
-                        required
-                        type="number"
-                    />
-                    <Button type="submit">Add Course</Button>
-                </form>
+                        <Button className={styles.btn} type="submit">Add Course</Button>
+                    </form>
+                </div>
+
                 <div className={styles['nav-btn']}>
                     <Button
                         className={styles['ctl-btn']}
