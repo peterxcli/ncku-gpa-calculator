@@ -1,4 +1,4 @@
-const scoreToGrade = (score: number): number => {
+export const scoreToGrade = (score: number): number => {
     if (score >= 90) return 4.3;
     if (score >= 85) return 4.0;
     if (score >= 80) return 3.7;

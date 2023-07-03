@@ -1,0 +1,38 @@
+// .container {
+//     text-align: center;
+// }
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+
+    .select {
+        margin: 0 0.5em;
+    }
+}
+
+
+.score-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 70vw;
+}
+
+.separate-line {
+    height: 1px;
+    background-color: #BDBDBD;
+    width: 100%;
+    margin: 16px 0;
+}
+
+@media screen and (max-width: 666px) {
+    .score-chart-container {
+        width: 90vw;
+    }
+}

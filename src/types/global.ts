@@ -12,3 +12,9 @@ interface Semester {
 interface YearRecord {
     [key: string]: Semester;
 }
+
+type ChartData = {
+    semester: string;
+    averageScore: number;
+    averageGPA: number;
+};

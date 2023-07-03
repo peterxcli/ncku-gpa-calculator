@@ -133,4 +133,20 @@ const CoursePage = () => {
     );
 };
 
-export default CoursePage;
+const Course = () => {
+    const [isServer, setIsServer] = useState(true);
+    useEffect(() => {
+        setIsServer(false);
+    }, []);
+    return (
+        <>
+            <Head>
+                <title>成功大學 GPA 計算工具 | National Cheng Kung University GPA Calculator</title>
+                <meta name="description" content="提供一個能夠在裝置上永久儲存你的成績資料的網站的成功大學 GPA 計算工具，選擇學期，只需輸入你的成績，工具將快速計算你的 GPA。此 GPA 計算機使用104年後的新標準計算，請特別注意 | Offering a National Cheng Kung University GPA calculator that allows you to permanently save your grade data on your device. Choose the semester, simply input your grades, and the tool will quickly calculate your GPA. Please note that this GPA calculator uses the new standard calculation after 2015." />
+            </Head>
+            {!isServer && <CoursePage />}
+        </>
+    );
+}
+
+export default Course;
