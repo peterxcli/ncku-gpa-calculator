@@ -6,17 +6,22 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <Main />
         {/* look: https://nextjs.org/docs/messages/next-script-for-ga */}
-        <Script src='https://www.googletagmanager.com/gtag/js?id=G-HP4XL8HL98' />
-        <Script id="google-analytics">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-HP4XL8HL98"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
+
             gtag('config', 'G-HP4XL8HL98');
           `}
         </Script>
+        <Main />
+        
         <NextScript />
       </body>
     </Html>
