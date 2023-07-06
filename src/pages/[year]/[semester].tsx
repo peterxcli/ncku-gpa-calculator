@@ -97,6 +97,7 @@ const CoursePage = () => {
                                 onChange={(e) => setScore(Number(e.target.value))}
                                 placeholder="Score" required type="number"
                             />
+                            {/* FIXME: the leading zero would not be trimmed onChange since the general react bug: https://github.com/mui/material-ui/issues/8380#issuecomment-468102555 */}
                             <TextField
                                 className={styles.textfield}
                                 label='Credit'
