@@ -7,6 +7,7 @@ export interface GPARecordSlice {
     addCourse: (year: string, semester: string, course: Course) => void;
     updateCourse: (year: string, semester: string, id: string, newCourse: Course) => void;
     removeCourse: (year: string, semester: string, id: string) => void;
+    overwriteRecords: (new_records: YearRecord) => void;
 };
 
 export const createGPARecordSlice: StateCreator<GPARecordSlice> = (set) => ({
@@ -58,6 +59,8 @@ export const createGPARecordSlice: StateCreator<GPARecordSlice> = (set) => ({
         return {
             records: newRecords,
         };
-    }
-    ),
+    }),
+    overwriteRecords: (new_records: YearRecord) => set(() => ({
+        records: new_records,
+    })),
 });

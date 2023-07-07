@@ -7,13 +7,22 @@ import { v4 as uuidv4 } from 'uuid';
 import Head from 'next/head';
 import ScoresChart from '@/components/scoresChart';
 import styles from './index.module.scss';
+import { DataMigrateDialog } from '@/components/dialog';
 
 const IndexPage = () => {
   const uuid = uuidv4();
   const router = useRouter();
   const [year, setYear] = useState(new Date().getFullYear());
   const [semester, setSemester] = useState('Spring');
-  const { records } = useAppStore();
+  const [modalOpen, setModalOpen] = useState(false);
+  const { records, overwriteRecords } = useAppStore();
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,9 +33,23 @@ const IndexPage = () => {
     router.push(`/${_year}/${_semester}`);
   };
 
+  const handleDataMigrate = () => {
+    setModalOpen(true);
+  }
+
   return (
     <Container>
-      <h1>Calculate NCKU GPA</h1>
+      <div className={styles.header}>
+        <h1>Calculate NCKU GPA</h1>
+        <Button color='primary' variant='contained' onClick={handleDataMigrate}>Migrate Data Between Different Device</Button>
+        <DataMigrateDialog
+          modalOpen={modalOpen}
+          handleOpen={handleModalOpen}
+          handleClose={handleModalClose}
+          current_data={records}
+          overwriteRecordFunc={overwriteRecords}
+        />
+      </div>
       {
         Array.from(Object.entries(records)).map(_year => (
           Array.from(Object.entries(_year[1])).map(_semester => (
