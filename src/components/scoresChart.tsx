@@ -18,7 +18,7 @@ const ScoresChart: React.FC<ScoresChartProps> = ({ records }) => {
                 let totalCredits = 0;
                 const semesterCourses = records[year][semester];
                 for (const course of (semesterCourses || [])) {
-                    totalScore += course.score;
+                    totalScore += course.score * course.credit;
                     totalGPA += scoreToGrade(course.score) * course.credit;
                     totalCredits += course.credit;
                 }
@@ -27,7 +27,7 @@ const ScoresChart: React.FC<ScoresChartProps> = ({ records }) => {
                 if (semesterCourses && semesterCourses.length > 0) {
                     transformedData.push({
                         semester: `${year} ${semester}`,
-                        averageScore: totalScore / semesterCourses.length,
+                        averageScore: totalScore / totalCredits,
                         averageGPA: totalGPA / totalCredits
                     });
                 }
